@@ -69,6 +69,10 @@ class ViewController: UIViewController {
         writeName.layer.cornerRadius = 5.0
         writeName.layer.borderWidth = 1.0
         writeName.layer.borderColor = UIColor.blue.cgColor
+        writeName.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15,height: writeName.frame.height))
+        writeName.leftViewMode = .always
+        writeName.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 15,height: writeName.frame.height))
+        writeName.rightViewMode = .always
     }
 
     func setupPassword(){
@@ -97,6 +101,10 @@ class ViewController: UIViewController {
         writePass.layer.borderWidth = 1.0
         writePass.layer.borderColor = UIColor.blue.cgColor
         writePass.isSecureTextEntry = true
+        writePass.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15,height: writePass.frame.height))
+        writePass.leftViewMode = .always
+        writePass.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 15,height: writePass.frame.height))
+        writePass.rightViewMode = .always
     }
 
     func setupButton(){
@@ -110,6 +118,5 @@ class ViewController: UIViewController {
         buttonPas.setTitle("Zapomenuté heslo", for: .normal)
         buttonPas.setTitleColor(UIColor(red: 61.0/255.0, green: 0.0/255.0, blue: 154.0/255.0, alpha: 1), for: .normal)
         buttonPas.backgroundColor = .clear
-
     }
 }
