@@ -22,6 +22,7 @@ class ViewController: UIViewController {
     var password = UILabel()
     var writePass = UITextField()
     var buttonPas = UIButton()
+    var buttonLogin = UIButton()
 
     func setup() {
         setupLabel()
@@ -30,6 +31,7 @@ class ViewController: UIViewController {
         setupPassword()
         setupWritePass()
         setupButton()
+        setupButtonLogin()
     }
 
     func setupLabel() {
@@ -119,4 +121,19 @@ class ViewController: UIViewController {
         buttonPas.setTitleColor(UIColor(red: 61.0/255.0, green: 0.0/255.0, blue: 154.0/255.0, alpha: 1), for: .normal)
         buttonPas.backgroundColor = .clear
     }
+
+    func setupButtonLogin(){
+        view.addSubview(buttonLogin)
+        buttonLogin.snp.makeConstraints { (make) in
+            make.bottom.equalToSuperview().offset(-70)
+            make.leading.equalToSuperview().offset(0)
+            make.trailing.equalToSuperview().offset(-0)
+            make.height.equalTo(20)
+        }
+        buttonLogin.setTitle("Přihlásit se", for: .normal)
+        buttonLogin.setTitleColor(UIColor(red: 61.0/255.0, green: 0.0/255.0, blue: 154.0/255.0, alpha: 1), for: .normal)
+        buttonLogin.backgroundColor = .clear
+        buttonLogin.layer.borderColor = UIColor.black.cgColor
+    }
+
 }
