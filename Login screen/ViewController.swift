@@ -8,10 +8,13 @@
 import UIKit
 import SnapKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         self.view.backgroundColor = .white
         setup()
     }
@@ -98,6 +101,7 @@ class ViewController: UIViewController {
             make.height.equalTo(50)
             make.leftMargin.equalTo(105)
         }
+        writePass.delegate = self
         writePass.placeholder = "Vaše heslo"
         writePass.layer.cornerRadius = 5.0
         writePass.layer.borderWidth = 1.0
@@ -135,5 +139,26 @@ class ViewController: UIViewController {
         buttonLogin.backgroundColor = .clear
         buttonLogin.layer.borderColor = UIColor.black.cgColor
     }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            buttonLogin.snp.updateConstraints { (make) in
+                make.bottom.equalToSuperview().offset(-350)
+            }
+        }
+    }
 
+    @objc func keyboardWillHide(notification: NSNotification) {
+        buttonLogin.snp.updateConstraints { (make) in
+            make.bottom.equalToSuperview().offset(-70)
+        }
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.backgroundColor = .red
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.backgroundColor = .blue
+    }
 }
